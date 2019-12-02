@@ -17,12 +17,16 @@ namespace HiddenSity
         private BoxCollider _boxCollider;
 
         public static Action<Item> ItemAction;
-        
+
         void ClickMe(Item i)
         {
-            ItemAction(this);
+            if (ItemAction != null)
+            {
+                ItemAction(this);
+            }
+            ShowItem(false);
         }
-        
+
         public void init()
         {
             _renderer = GetComponent<Renderer>();
@@ -42,7 +46,7 @@ namespace HiddenSity
 
             SetName();
             ShowName(false);
-            ShowItem(false);
+            ShowItem(true);
 
 
             EventTrigger trigger = GetComponent<EventTrigger>();
